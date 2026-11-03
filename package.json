@@ -1,0 +1,54 @@
+{
+  "name": "cad-usd-exposure",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --port 4710",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint",
+    "fmt": "oxfmt --check",
+    "typecheck": "nuxt typecheck",
+    "check": "oxfmt && eslint --fix && nuxt typecheck",
+    "test": "vitest run",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:migrate:deploy": "bun run server/db/migrate.ts"
+  },
+  "dependencies": {
+    "@better-auth/core": "1.6.23",
+    "@iconify-json/lucide": "^1.2.118",
+    "@iconify-json/simple-icons": "^1.2.91",
+    "@nuxt/ui": "^4.10.0",
+    "@vueuse/core": "^14.3.0",
+    "@vueuse/nuxt": "^14.3.0",
+    "better-auth": "^1.6.23",
+    "drizzle-orm": "1.0.0-rc.4",
+    "jose": "6.2.3",
+    "nuxt": "^4.5.0",
+    "oxfmt": "^0.59.0",
+    "postgres": "^3.4.9",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.16.0",
+    "@nuxt/test-utils": "^4.0.3",
+    "@types/node": "^26.0.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/eslint-plugin": "^1.6.23",
+    "@vue/test-utils": "^2.4.11",
+    "drizzle-kit": "1.0.0-rc.4",
+    "eslint": "^10.7.0",
+    "happy-dom": "^20.11.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.7"
+  },
+  "overrides": {
+    "@unhead/vue": "^3.2.1",
+    "zod": "^4.4.3"
+  }
+}

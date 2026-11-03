@@ -1,0 +1,82 @@
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Archivo Black", Impact, sans-serif;
+  --color-paper: #f4f1ea;
+  --color-ink: #111;
+  --color-alert: #d4210f;
+  --color-rule: #8a867d;
+}
+
+:root {
+  --ui-bg: var(--color-paper);
+  --ui-text: var(--color-ink);
+  --ui-radius: 0;
+}
+
+.btn {
+  display: inline-block;
+  border: 3px solid var(--color-ink);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--color-alert);
+  border-color: var(--color-alert);
+}
+.btn:focus-visible {
+  outline: 3px solid var(--color-alert);
+  outline-offset: 3px;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+}
+.btn-ghost:hover {
+  color: var(--color-paper);
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+table.data th {
+  text-align: left;
+  border-bottom: 3px solid var(--color-ink);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+table.data td {
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  vertical-align: top;
+}
+table.data .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding-right: 0;
+  white-space: nowrap;
+}
