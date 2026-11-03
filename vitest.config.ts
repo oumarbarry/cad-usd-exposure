@@ -17,7 +17,7 @@ export default defineConfig({
     // Spies/mocks never leak across tests (vitest.dev/guide/learn/writing-tests-with-ai).
     restoreMocks: true,
     projects: [
-      // Unit project — pure Node logic (server utils + shared helpers).
+      // Unit project: pure Node logic (server utils + shared helpers).
       // No Nuxt runtime, so it needs the explicit aliases and the auto-import
       // polyfills from test/setup.ts (createError / defineEventHandler).
       {
@@ -30,7 +30,7 @@ export default defineConfig({
           include: ["test/*.test.ts", "shared/**/*.test.ts", "server/**/*.test.ts"],
         },
       },
-      // Nuxt project — component/composable tests that need the Nuxt runtime.
+      // Nuxt project: component/composable tests that need the Nuxt runtime.
       // The Nuxt resolver handles aliases and auto-imports (use mockNuxtImport
       // here, not the manual global stubs).
       await defineVitestProject({
