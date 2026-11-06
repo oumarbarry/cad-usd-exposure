@@ -24,20 +24,26 @@ export async function fetchAccounts(token: string): Promise<Account[]> {
   )
 }
 
-type Valet = { observations: ({ d: string } & Record<string, { v: string } | string>)[] }
+type Observation = { d: string } & Record<string, { v: string } | string>
 
-// Bank of Canada daily average rates: official, free, no key, CAD based.
-export async function fetchRates() {
-  const { observations } = await $fetch<Valet>(
-    "https://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json?recent=1",
-  )
-  const { d: date, ...series } = observations[0]!
+// The group also returns discontinued series as older, separate observations,
+// so the first one is not the latest. Those currencies end up as "no rate".
+export function parseRates(observations: Observation[]) {
+  const { d: date, ...series } = observations.reduce((a, b) => (b.d > a.d ? b : a))
   const rates: Rates = {}
   for (const [name, entry] of Object.entries(series)) {
     const currency = /^FX(\w{3})CAD$/.exec(name)?.[1]
     if (currency && typeof entry !== "string") rates[currency] = Number(entry.v)
   }
   return { date, rates }
+}
+
+// Bank of Canada daily average rates: official, free, no key, CAD based.
+export async function fetchRates() {
+  const { observations } = await $fetch<{ observations: Observation[] }>(
+    "https://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json?recent=1",
+  )
+  return parseRates(observations)
 }
 
 export async function revoke(refreshToken: string) {
