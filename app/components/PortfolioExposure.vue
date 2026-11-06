@@ -3,7 +3,8 @@ defineProps<{ email: string }>()
 
 const { data, status, error, refresh } = useLazyFetch("/api/exposure", { server: false })
 
-const cad = new Intl.NumberFormat("en-CA", {
+// en-US prints CA$, where en-CA prints a bare $ that reads as USD on this page.
+const cad = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "CAD",
   maximumFractionDigits: 0,
